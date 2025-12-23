@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Konsultasi | Glow Beauty</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#fff0f6;
+  color:#333;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  background:#fff;
+  padding:15px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+  position:relative;
+  z-index:1000;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:700;
+  color:#e83e8c;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  gap:25px;
+}
+
+nav a{
+  text-decoration:none;
+  font-weight:600;
+  color:#555;
+  padding:10px 12px;
+}
+
+/* ===== DROPDOWN ===== */
+.dropdown{
+  position:relative;
+}
+
+.dropdown > a{
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+}
+
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:45px;
+  left:0;
+  background:#fff;
+  min-width:190px;
+  border-radius:15px;
+  box-shadow:0 4px 10px rgba(0,0,0,.1);
+  z-index:1000;
+  padding:10px 0;
+}
+
+.dropdown-content a{
+  display:block;
+  padding:12px 18px;
+  font-size:14px;
+  white-space:nowrap;
+}
+
+.dropdown-content a:hover{
+  background:#ffe0ec;
+  color:#e83e8c;
+}
+
+.dropdown:hover .dropdown-content,
+.dropdown-content:hover{
+  display:block;
+}
+
+/* ===== CONTENT ===== */
+.container{
+  max-width:800px;
+  margin:60px auto;
+  background:#fff;
+  padding:40px;
+  border-radius:30px;
+  box-shadow:0 4px 15px rgba(232,62,140,.2);
+}
+
+.container h1{
+  color:#e83e8c;
+  text-align:center;
+}
+
+.info-box{
+  margin-top:30px;
+  background:#ffe0ec;
+  padding:25px;
+  border-radius:20px;
+}
+
+.info-box h3{
+  color:#e83e8c;
+  margin-bottom:10px;
+}
+
+.info-box p{
+  margin:5px 0;
+}
+
+.btn{
+  display:inline-block;
+  margin-top:15px;
+  background:#e83e8c;
+  color:#fff;
+  padding:12px 25px;
+  border-radius:25px;
+  text-decoration:none;
+  font-weight:600;
+  text-align:center;
+}
+
+.btn-back{
+  display:block;
+  margin:40px auto 0;
+  width:max-content;
+  background:#fff;
+  color:#e83e8c;
+  border:2px solid #e83e8c;
+}
+
+.btn-back:hover{
+  background:#e83e8c;
+  color:#fff;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Glow Beauty</div>
+  <nav>
+    <a href="index.html">Beranda</a>
+
+    <div class="dropdown">
+      <a>Produk ▾</a>
+      <div class="dropdown-content">
+        <a href="kategori-mattedorable.html">Mattedorable</a>
+        <a href="kategori-tintdorable.html">Tintdorable</a>
+        <a href="kategori-lipcream.html">Lip Cream</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a>Cek Tone ▾</a>
+      <div class="dropdown-content">
+        <a href="cek-tone.html">Cek Tone</a>
+        <a href="konsultasi.html">Konsultasi</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+  <h1>💬 Konsultasi Kecantikan</h1>
+  <p style="text-align:center;">
+    Hubungi kami untuk konsultasi shade, kondisi kulit bibir,
+    dan rekomendasi produk terbaik.
+  </p>
+
+  <div class="info-box">
+    <h3>📱 WhatsApp</h3>
+    <p><b>Nama:</b> Admin Glow Beauty</p>
+    <p><b>No WhatsApp:</b> 089531294393</p>
+    <a class="btn" href="https://wa.me/+6289531294393" target="_blank">
+      Chat WhatsApp
+    </a>
+  </div>
+
+  <div class="info-box">
+    <h3>🎵 Akun TikTok Glow Beauty</h3>
+    <p><b>Username:</b> @glowbeauties__</p>
+    <a class="btn" href="https://www.tiktok.com/@glowbeauties__?_r=1&_t=ZS-92SdREqGNxX" target="_blank">
+      Kunjungi TikTok
+    </a>
+  </div>
+
+  <div class="info-box">
+    <h3>👩‍⚕️ Konsultasi dengan Dokter</h3>
+    <p>
+      Untuk kasus tertentu (bibir sensitif, iritasi, atau kebutuhan khusus),
+      Anda dapat diarahkan ke dokter atau tenaga ahli yang bersangkutan.
+    </p>
+    <a class="btn"
+       href="https://www.google.com/maps/search/dokter+kulit+terdekat"
+       target="_blank">
+      🔍 Cari Dokter Kulit Terdekat
+    </a>
+  </div>
+
+  <a href="index.html" class="btn btn-back">
+     Kembali ke Beranda
+  </a>
+</div>
+
+</body>
+</html>

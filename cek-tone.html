@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Cek Tone | Glow Beauty</title>
+
+<style>
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#fff0f6;
+  color:#333;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 40px;
+  background:#fff;
+  box-shadow:0 4px 10px rgba(0,0,0,.05);
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+
+.logo{
+  font-size:26px;
+  font-weight:700;
+  color:#e83e8c;
+}
+
+nav{
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
+
+.nav-link{
+  text-decoration:none;
+  font-weight:600;
+  color:#555;
+  padding:10px 15px;
+  line-height:1.5;
+  border-radius:12px;
+  transition: all 0.3s ease;
+  display:flex;
+  align-items:center;
+}
+
+.nav-link:hover{
+  background:#ffe0ec;
+  color:#e83e8c;
+  box-shadow:0 2px 8px rgba(232,62,140,0.2);
+}
+
+/* DROPDOWN */
+.dropdown{
+  position:relative;
+}
+
+.dropdown-content{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#fff;
+  min-width:200px;
+  border-radius:18px;
+  box-shadow:0 4px 12px rgba(0,0,0,.1);
+  padding:10px 0;
+}
+
+.dropdown-content a{
+  display:block;
+  padding:12px 20px;
+  text-decoration:none;
+  color:#555;
+  font-size:14px;
+  border-radius:12px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-content a:hover{
+  background:#e83e8c;
+  color:#fff;
+}
+
+.dropdown:hover .dropdown-content{
+  display:block;
+}
+
+/* ===== CONTAINER ===== */
+.container{
+  max-width:1000px;
+  margin:50px auto;
+  padding:40px;
+}
+
+h1{
+  color:#e83e8c;
+  text-align:center;
+  margin-bottom:30px;
+}
+
+/* ===== OPTIONS ===== */
+.options{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+
+.box{
+  background:#fff;
+  padding:35px;
+  border-radius:30px;
+  text-align:center;
+  box-shadow:0 4px 15px rgba(232,62,140,.2);
+  transition:.3s;
+}
+
+.box:hover{
+  transform:translateY(-5px);
+  box-shadow:0 6px 20px rgba(232,62,140,0.3);
+}
+
+.box h2{
+  color:#e83e8c;
+}
+
+.btn{
+  background:#e83e8c;
+  color:#fff;
+  border:none;
+  padding:12px 25px;
+  border-radius:25px;
+  font-weight:600;
+  cursor:pointer;
+  margin:10px 5px;
+  transition:all 0.3s ease;
+}
+
+.btn:hover{
+  opacity:.9;
+}
+
+/* ===== SECTION CAMERA & SURVEY ===== */
+.section{
+  display:none;
+  margin-top:50px;
+  background:#fff;
+  padding:40px;
+  border-radius:30px;
+  box-shadow:0 4px 15px rgba(232,62,140,.2);
+}
+
+video,canvas{
+  width:100%;
+  max-height:300px;
+  border-radius:20px;
+  background:#000;
+}
+
+.result{
+  margin-top:25px;
+  background:#ffe0ec;
+  padding:25px;
+  border-radius:20px;
+}
+
+/* SURVEY */
+ul{list-style:none;padding:0;}
+li{margin:20px 0;}
+
+.survey-options label{
+  display:block;
+  margin:8px 0;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Glow Beauty</div>
+  <nav>
+    <a href="index.html" class="nav-link">Beranda</a>
+
+    <div class="dropdown">
+      <a class="nav-link">Produk ▾</a>
+      <div class="dropdown-content">
+        <a href="kategori-mattedorable.html">Mattedorable</a>
+        <a href="kategori-tintdorable.html">Tintdorable</a>
+        <a href="kategori-lipcream.html">Lip Cream</a>
+      </div>
+    </div>
+
+    <div class="dropdown">
+      <a class="nav-link">Cek Tone ▾</a>
+      <div class="dropdown-content">
+        <a href="cek-tone.html">Cek Tone</a>
+        <a href="konsultasi.html">Konsultasi</a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<div class="container">
+<h1>🎨 Cek Tone Kulit Bibir</h1>
+
+<div class="options">
+  <div class="box">
+    <h2>📸 Cek dengan Kamera</h2>
+    <p>Ambil foto bibir untuk hasil instan.</p>
+    <button class="btn" onclick="startCamera()">Gunakan Kamera</button>
+  </div>
+
+  <div class="box">
+    <h2>📝 Survey Manual</h2>
+    <p>Jawab pertanyaan singkat.</p>
+    <button class="btn" onclick="showSurvey()">Isi Survey</button>
+  </div>
+</div>
+
+<!-- CAMERA -->
+<div class="section" id="cameraSection">
+  <h2>📸 Ambil Foto Bibir</h2>
+  <video id="video" autoplay></video>
+  <canvas id="canvas" style="display:none"></canvas>
+
+  <div>
+    <button class="btn" onclick="capturePhoto()">📸 Ambil Gambar</button>
+    <button class="btn" onclick="retakePhoto()">🔄 Ambil Ulang</button>
+  </div>
+
+  <div class="result" id="cameraResult"></div>
+</div>
+
+<!-- SURVEY -->
+<div class="section" id="surveySection">
+  <h2>📝 Survey Kondisi Kulit</h2>
+
+  <ul>
+    <li>
+      <b>1. Warna pembuluh darah di pergelangan tangan?</b>
+      <div class="survey-options">
+        <label><input type="radio" name="q1" value="cool"> Biru / Ungu</label>
+        <label><input type="radio" name="q1" value="warm"> Hijau</label>
+        <label><input type="radio" name="q1" value="neutral"> Campuran</label>
+      </div>
+    </li>
+
+    <li>
+      <b>2. Reaksi kulit saat terkena matahari?</b>
+      <div class="survey-options">
+        <label><input type="radio" name="q2" value="cool"> Mudah terbakar</label>
+        <label><input type="radio" name="q2" value="warm"> Mudah menggelap</label>
+        <label><input type="radio" name="q2" value="neutral"> Keduanya</label>
+      </div>
+    </li>
+
+    <li>
+      <b>3. Perhiasan yang paling cocok?</b>
+      <div class="survey-options">
+        <label><input type="radio" name="q3" value="cool"> Silver</label>
+        <label><input type="radio" name="q3" value="warm"> Gold</label>
+        <label><input type="radio" name="q3" value="neutral"> Keduanya</label>
+      </div>
+    </li>
+  </ul>
+
+  <button class="btn" onclick="analyzeSurvey()">Lihat Hasil</button>
+  <div class="result" id="surveyResult"></div>
+</div>
+
+</div>
+
+<script>
+let stream;
+
+function startCamera(){
+  showOnly("cameraSection");
+  navigator.mediaDevices.getUserMedia({video:true})
+    .then(s=>{stream=s; video.srcObject=s;});
+}
+
+function capturePhoto(){
+  canvas.width=video.videoWidth;
+  canvas.height=video.videoHeight;
+  canvas.getContext("2d").drawImage(video,0,0);
+  stream.getTracks().forEach(t=>t.stop());
+  analyzeCamera();
+}
+
+function retakePhoto(){
+  startCamera();
+  cameraResult.innerHTML="";
+}
+
+function analyzeCamera(){
+  const tones=["Warm","Cool","Neutral"];
+  const tone=tones[Math.floor(Math.random()*3)];
+  renderResult("cameraResult", tone);
+}
+
+function showSurvey(){
+  showOnly("surveySection");
+}
+
+function analyzeSurvey(){
+  const checked=document.querySelectorAll("input[type=radio]:checked");
+  if(checked.length<3){
+    alert("Silakan jawab semua pertanyaan");
+    return;
+  }
+
+  let score={warm:0,cool:0,neutral:0};
+  checked.forEach(r=>score[r.value]++);
+
+  let tone="Neutral";
+  if(score.warm>score.cool && score.warm>score.neutral) tone="Warm";
+  if(score.cool>score.warm && score.cool>score.neutral) tone="Cool";
+
+  renderResult("surveyResult", tone);
+}
+
+function renderResult(target, tone){
+  let kategori="",shade="",desc="";
+  if(tone==="Warm"){
+    kategori="Lip Cream & Mattedorable";
+    shade="Brick Red, Terracotta, Brown Nude";
+    desc="Memberi kesan hangat dan natural.";
+  }
+  if(tone==="Cool"){
+    kategori="Tintdorable";
+    shade="Rose Pink, Mauve, Berry";
+    desc="Membuat wajah tampak cerah & segar.";
+  }
+  if(tone==="Neutral"){
+    kategori="Semua Kategori";
+    shade="Peach, Coral, Nude Pink";
+    desc="Fleksibel untuk berbagai warna.";
+  }
+
+  document.getElementById(target).innerHTML=`
+    <h3>✨ Hasil Analisis</h3>
+    <p><b>Tone:</b> ${tone}</p>
+    <p>${desc}</p>
+    <p><b>Kategori Lipstik:</b> ${kategori}</p>
+    <p><b>Rekomendasi Shade:</b> ${shade}</p>
+    <a class="btn" href="index.html">🛍️ Beli Produk</a>
+  `;
+}
+
+function showOnly(id){
+  cameraSection.style.display="none";
+  surveySection.style.display="none";
+  document.getElementById(id).style.display="block";
+}
+</script>
+
+</body>
+</html>
